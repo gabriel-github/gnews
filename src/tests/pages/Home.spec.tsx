@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/display-name */
 import { render, screen } from "@testing-library/react";
 import Home, { getStaticProps } from "../../pages";
 import { mocked } from "ts-jest/utils";
@@ -11,6 +13,12 @@ jest.mock("next-auth/client", () => {
     },
   };
 });
+jest.mock("next/image", () => ({
+  __esModule: true,
+  default: (props: any) => {
+    return <img {...props} />;
+  },
+}));
 jest.mock("../../services/stripe");
 
 describe("Home page", () => {

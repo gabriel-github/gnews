@@ -33,7 +33,7 @@ export default function Home({ product }: HomeProps) {
           </p>
           <SubscribeButton />
         </section>
-        <img src={avatar} alt="Girl coding" />
+        <Image src={avatar} alt="Girl coding" />
       </main>
     </>
   );
