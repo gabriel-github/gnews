@@ -1,8 +1,7 @@
 import { render, screen } from "@testing-library/react";
-import Post, { getServerSideProps } from "../../pages/posts/[slug]";
-import { mocked } from "ts-jest/utils";
 import { getSession } from "next-auth/client";
-import { useRouter } from "next/router";
+import { mocked } from "ts-jest/utils";
+import Post, { getServerSideProps } from "../../pages/posts/[slug]";
 import { getPrismicClient } from "../../services/prismic";
 
 const post = {
