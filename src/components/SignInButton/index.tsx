@@ -11,7 +11,7 @@ export function SignInButton() {
   return session ? (
     <button type="button" className={styles.signInButton}>
       <FaGithub color="#04d361" />
-      Gabriel santos
+      {session.user.name}
       <FiX className={styles.closeIcon} />
     </button>
   ) : (
