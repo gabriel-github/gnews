@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import PreviewPost, {
   getStaticProps,
-} from "../../../pages/posts/preview/[slug]";
+  getStaticPaths,
+} from "../../pages/posts/preview/[slug]";
 import { mocked } from "ts-jest/utils";
 import { useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-import { getPrismicClient } from "../../../services/prismic";
+import { getPrismicClient } from "../../services/prismic";
 
 const post = {
   slug: "my-fake-post",
@@ -16,15 +17,24 @@ const post = {
 
 jest.mock("next-auth/client");
 jest.mock("next/router");
-jest.mock("../../../services/prismic");
+jest.mock("../../services/prismic");
 
 describe("PreviewPost page", () => {
-  it("renders correctly", () => {
+  it("renders correctly", async () => {
     const useSessionMocked = mocked(useSession);
 
     useSessionMocked.mockReturnValueOnce([null, false]);
 
     render(<PreviewPost post={post} />);
+
+    const response = await getStaticPaths({});
+
+    expect(response).toEqual(
+      expect.objectContaining({
+        paths: [],
+        fallback: "blocking",
+      })
+    );
 
     expect(screen.getByText("My Fake Post")).toBeInTheDocument();
     expect(screen.getByText("Post excerpt")).toBeInTheDocument();
