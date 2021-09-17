@@ -6,7 +6,7 @@ import { SubscribeButton } from "../components/SubscribeButton";
 import { stripe } from "../services/stripe";
 import avatar from "../../public/images/avatar.svg";
 
-import styles from "../styles/home.module.scss";
+import styles from "./home.module.scss";
 
 interface HomeProps {
   product: {
